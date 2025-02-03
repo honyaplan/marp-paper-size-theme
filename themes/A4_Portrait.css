@@ -8,7 +8,7 @@ section {
   height: 297mm;
 }
 
-.landscape {
+section.landscape {
   /* 横向き */
   width: 297mm;
   height: 210mm;
