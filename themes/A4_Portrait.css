@@ -3,6 +3,7 @@
 /**
  * MARPのA4サイズドキュメントテーマ
  * 表紙と本文スタイルを分離し、9ptをベースサイズとする
+ * パディング、マージン、リストスタイル、コードの視認性を改善
  */
 
 /* ベーステーマのインポート */
@@ -18,8 +19,9 @@ section {
   height: 297mm;
   font-family: "IBM Plex Sans JP";
   font-size: 9pt;
-  padding: 40px;
+  padding: 30px 35px; /* 上下・左右の余白を調整 */
   display: flex;
+  flex-direction: column; /* 縦方向のフロー */
   text-align: left;
   justify-content: flex-start;
   align-items: flex-start;
@@ -67,21 +69,22 @@ section.cover p {
 header {
   font-size: 8pt;
   opacity: 60%;
-  top: 20px;
+  top: 15px;
+  left: 35px;
 }
 
 footer {
   font-size: 8pt;
   opacity: 60%;
-  left: 40px;
-  bottom: 20px;
+  left: 35px;
+  bottom: 15px;
 }
 
 section::after {
   font-size: 8pt;
   opacity: 40%;
-  right: 40px;
-  bottom: 20px;
+  right: 35px;
+  bottom: 15px;
 }
 
 /* ==========================================
@@ -106,8 +109,8 @@ section::after {
   --font-size-table: 8pt;
   --font-size-table-header: 8pt;
   --font-size-paragraph: var(--font-size-base);
-  --font-size-code-inline: 8pt;
-  --font-size-code-block: 8pt;
+  --font-size-code-inline: 9pt; /* インラインコードサイズ拡大 */
+  --font-size-code-block: 9pt; /* コードブロックサイズ拡大 */
   --font-size-blockquote: var(--font-size-small);
   --font-size-blockquote-paragraph: var(--font-size-small);
 }
@@ -120,12 +123,12 @@ section::after {
   --margin-base: 0.8rem;
 
   /* 見出しのマージン */
-  --margin-h1: 1.5rem 0 0.8rem 0;
-  --margin-h2: 1.3rem 0 0.7rem 0;
-  --margin-h3: 1.1rem 0 0.6rem 0;
-  --margin-h4: 1rem 0 0.5rem 0;
-  --margin-h5: 0.9rem 0 0.4rem 0;
-  --margin-h6: 0.8rem 0 0.3rem 0;
+  --margin-h1: 1.8rem 0 1rem 0; /* 上部マージン拡大 */
+  --margin-h2: 1.6rem 0 0.8rem 0; /* 上部マージン拡大 */
+  --margin-h3: 1.3rem 0 0.7rem 0; /* 上部マージン拡大 */
+  --margin-h4: 1.1rem 0 0.6rem 0; /* 上部マージン拡大 */
+  --margin-h5: 0.9rem 0 0.5rem 0;
+  --margin-h6: 0.8rem 0 0.4rem 0;
 
   /* 見出しのパディング */
   --padding-h1: 0.3rem 0;
@@ -136,24 +139,24 @@ section::after {
   --padding-h6: 0.1rem 0;
 
   /* リストアイテムのマージンとパディング */
-  --margin-list: 0.5rem 0 0.8rem;
-  --padding-list: 0.1rem 1.2rem;
+  --margin-list: 0.6rem 0 1rem; /* 余白調整 */
+  --padding-list: 0 1.5rem; /* 左余白拡大 */
 
   /* テーブルのマージンとパディング */
-  --margin-table: .25rem auto .5rem;
-  --padding-table: .2rem 0.4rem;
+  --margin-table: .6rem auto 1rem; /* 上下マージン拡大 */
+  --padding-table: .3rem 0.5rem; /* セル内パディング拡大 */
 
   /* 段落のマージンとパディング */
-  --margin-paragraph: 0.7rem 0; /* 本文の段落間隔 */
+  --margin-paragraph: 0.8rem 0; /* 段落間隔拡大 */
   --padding-paragraph: 0;
 
   /* コードのマージンとパディング */
-  --margin-code: 0.4rem 0;
-  --padding-code: 0.2rem;
+  --margin-code: 0.5rem 0;
+  --padding-code: 0.3rem 0.4rem; /* パディング拡大 */
 
   /* 引用ブロックのマージンとパディング */
-  --margin-blockquote: 1rem 0;
-  --padding-blockquote: 0.7rem;
+  --margin-blockquote: 1.2rem 0;
+  --padding-blockquote: 0.8rem 1rem; /* 余白拡大 */
 }
 
 /* ==========================================
@@ -166,7 +169,7 @@ h1 {
   margin: var(--margin-h1);
   padding: var(--padding-h1);
   font-weight: 600;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1.5px solid #ddd; /* 線を少し太く */
 }
 
 h2 {
@@ -212,7 +215,11 @@ ul, ol {
 }
 
 ul {
-  list-style-type: none;
+  list-style-type: disc; /* ディスクタイプに変更 */
+}
+
+ul > li::before {
+  content: none; /* カスタムマーカーを削除 */
 }
 
 ul > li > ul, 
@@ -220,16 +227,22 @@ ol > li > ul {
   list-style-type: circle;
 }
 
+ul > li > ul > li > ul,
+ol > li > ul > li > ul {
+  list-style-type: square;
+}
+
 ul li, ol li {
   font-size: var(--font-size-list-item);
-  margin-bottom: 0.2em;
+  margin-bottom: 0.3em; /* リストアイテム間隔拡大 */
+  padding-left: 0.3em; /* リストアイテムの左パディング */
 }
 
 /* テーブルスタイル */
 table {
   font-size: var(--font-size-table);
   margin: var(--margin-table);
-  padding: var(--padding-table);
+  padding: 0;
   border-collapse: collapse;
   width: 100%;
 }
@@ -252,30 +265,36 @@ p {
   margin: var(--margin-paragraph);
   padding: var(--padding-paragraph);
   text-indent: 0; /* 段落の最初の行のインデントなし */
+  line-height: 1.6; /* 行間を少し広げる */
 }
 
 /* コードスタイル */
 code {
   font-size: var(--font-size-code-inline);
-  margin: var(--margin-code);
+  margin: 0;
   padding: var(--padding-code);
-  background-color: #f5f5f5;
+  background-color: #f6f8fa;
   border-radius: 4px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  color: #24292e; /* コードテキストの色を濃く */
 }
 
 pre {
   margin: var(--margin-code);
   padding: 0;
+  background-color: #f6f8fa;
+  border-radius: 4px;
+  border: 1px solid #eaecef; /* 境界線を追加 */
 }
 
 pre code {
   font-size: var(--font-size-code-block);
   margin: 0;
-  padding: 0.5rem;
-  background-color: #f5f5f5;
+  padding: 0.7rem; /* コードブロックのパディングを大きく */
+  background-color: transparent; /* 背景を透明に */
   display: block;
   overflow-x: auto;
+  line-height: 1.5; /* コードの行間 */
 }
 
 /* 引用ブロックスタイル */
@@ -317,6 +336,7 @@ cite {
 strong {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 500;
+  color: #333; /* 強調テキストを少し濃く */
 }
 
 /* リンク */
@@ -334,7 +354,7 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 0.5rem auto;
+  margin: 0.8rem auto; /* 上下マージン拡大 */
 }
 
 /* ==========================================
@@ -364,6 +384,24 @@ img {
 .pl-0 { padding-left: 0; }
 .pr-0 { padding-right: 0; }
 
+.mt-1 { margin-top: 0.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.ml-1 { margin-left: 0.5rem; }
+.mr-1 { margin-right: 0.5rem; }
+.pt-1 { padding-top: 0.5rem; }
+.pb-1 { padding-bottom: 0.5rem; }
+.pl-1 { padding-left: 0.5rem; }
+.pr-1 { padding-right: 0.5rem; }
+
+.mt-2 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 1rem; }
+.ml-2 { margin-left: 1rem; }
+.mr-2 { margin-right: 1rem; }
+.pt-2 { padding-top: 1rem; }
+.pb-2 { padding-bottom: 1rem; }
+.pl-2 { padding-left: 1rem; }
+.pr-2 { padding-right: 1rem; }
+
 /* その他のユーティリティ */
 .small-text {
   font-size: var(--font-size-small);
@@ -377,5 +415,48 @@ img {
 .two-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 1.2rem; /* 列間のギャップを広げる */
+}
+
+/* 3段組レイアウト */
+.three-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
+}
+
+/* ボックス装飾 */
+.box {
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.box-info {
+  background-color: #f1f8ff;
+  border-left: 4px solid #0366d6;
+}
+
+.box-warning {
+  background-color: #fff5b1;
+  border-left: 4px solid #f9c513;
+}
+
+.box-error {
+  background-color: #ffeef0;
+  border-left: 4px solid #d73a49;
+}
+
+/* 画像サイズ調整 */
+.img-small {
+  max-width: 50%;
+}
+
+.img-medium {
+  max-width: 75%;
+}
+
+.img-large {
+  max-width: 100%;
 }
