@@ -19,7 +19,7 @@ section {
   height: 297mm;
   font-family: "IBM Plex Sans JP";
   font-size: 9pt;
-  padding: 30px 35px;
+  padding: 12mm 15mm;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -91,7 +91,7 @@ section::after {
    ========================================== */
 
 h1 {
-  font-size: 14pt;
+  font-size: 12pt;
   margin: 1.8rem 0 1rem 0;
   padding: 0.3rem 0;
   font-weight: 600;
@@ -99,7 +99,7 @@ h1 {
 }
 
 h2 {
-  font-size: 12pt;
+  font-size: 11pt;
   margin: 1.6rem 0 0.8rem 0;
   padding: 0.25rem 0;
   font-weight: 600;
@@ -107,28 +107,28 @@ h2 {
 }
 
 h3 {
-  font-size: 11pt;
+  font-size: 10pt;
   margin: 1.3rem 0 0.7rem 0;
   padding: 0.2rem 0;
   font-weight: 500;
 }
 
 h4 {
-  font-size: 10pt;
+  font-size: 9pt;
   margin: 1.1rem 0 0.6rem 0;
   padding: 0.15rem 0;
   font-weight: 500;
 }
 
 h5 {
-  font-size: 9pt;
+  font-size: 8pt;
   margin: 0.9rem 0 0.5rem 0;
   padding: 0.1rem 0;
   font-weight: 500;
 }
 
 h6 {
-  font-size: 8pt;
+  font-size: 7pt;
   margin: 0.8rem 0 0.4rem 0;
   padding: 0.1rem 0;
   font-weight: 500;
@@ -140,7 +140,7 @@ h6 {
 
 ul, ol {
   margin: 0.6rem 0 1rem;
-  padding: 0 1.5rem;
+  padding: 0 1.35rem;
 }
 
 ul {
