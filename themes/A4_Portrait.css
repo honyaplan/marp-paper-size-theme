@@ -229,7 +229,7 @@ strong {
    ========================================== */
 
 code {
-  font-size: 9pt;
+  font-size: 7pt;
   margin: 0;
   padding: 0.3rem 0.4rem;
   background-color: #f6f8fa;
@@ -246,7 +246,7 @@ pre {
   border: 1px solid #eaecef;
   max-height: none;
   overflow: visible;
-   line-height: 1.5 ;
+   line-height: 1.85 ;
 }
 
 pre code {
