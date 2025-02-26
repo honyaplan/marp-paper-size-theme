@@ -3,7 +3,7 @@
 /**
  * MARPのA4サイズドキュメントテーマ
  * 表紙と本文スタイルを分離し、9ptをベースサイズとする
- * 変数を展開した直接指定バージョン
+ * パディング、マージン、リストスタイル、コードの視認性を改善
  */
 
 /* ベーステーマのインポート */
@@ -19,9 +19,9 @@ section {
   height: 297mm;
   font-family: "IBM Plex Sans JP";
   font-size: 9pt;
-  padding: 12mm 15mm;
+  padding: 15mm 17mm; /* 上下・左右の余白を調整 */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* 縦方向のフロー */
   text-align: left;
   justify-content: flex-start;
   align-items: flex-start;
@@ -29,6 +29,7 @@ section {
 
 /* 表紙用クラス */
 section.cover {
+  /* 表紙用スタイル：中央揃え */
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -87,60 +88,130 @@ section::after {
 }
 
 /* ==========================================
-   2. 見出しスタイル
+   2. フォントサイズ変数定義
+   ========================================== */
+:root {
+  /* 基本サイズ */
+  --font-size-base: 9pt;
+  --font-size-small: 8pt;
+  --font-size-supsub: 7pt;
+  
+  /* 見出し */
+  --font-size-h1: 14pt;
+  --font-size-h2: 12pt;
+  --font-size-h3: 11pt;
+  --font-size-h4: 10pt;
+  --font-size-h5: 9pt;
+  --font-size-h6: 8pt;
+  
+  /* 要素別サイズ */
+  --font-size-list-item: 8pt; /* リストフォントを小さく調整 */
+  --font-size-table: 8pt;
+  --font-size-table-header: 8pt;
+  --font-size-paragraph: var(--font-size-base);
+  --font-size-code-inline: 0.8em;
+  --font-size-code-block: 0.8em;
+  --font-size-blockquote: var(--font-size-small);
+  --font-size-blockquote-paragraph: var(--font-size-small);
+}
+
+/* ==========================================
+   3. マージン・パディング変数定義
+   ========================================== */
+:root {
+  /* 基準のマージン */
+  --margin-base: 0.8rem;
+
+  /* 見出しのマージン */
+  --margin-h1: 1.2rem 0 0.8rem 0;
+  --margin-h2: 1.1rem 0 0.5rem 0;
+  --margin-h3: 1.0rem 0 0.4rem 0;
+  --margin-h4: 0.9rem 0 0.3rem 0;
+  --margin-h5: 0.8rem 0 0.2rem 0;
+  --margin-h6: 0.6rem 0 0.2rem 0;
+
+  /* 見出しのパディング */
+  --padding-h1: 0.3rem 0;
+  --padding-h2: 0.25rem 0;
+  --padding-h3: 0.2rem 0;
+  --padding-h4: 0.15rem 0;
+  --padding-h5: 0.1rem 0;
+  --padding-h6: 0.1rem 0;
+
+  /* リストアイテムのマージンとパディング */
+  --margin-list: 0.6rem 0 1rem;
+  --padding-list: 0 1.5rem;
+
+  /* テーブルのマージンとパディング */
+  --margin-table: .6rem auto 1rem;
+  --padding-table: .3rem 0.5rem;
+
+  /* 段落のマージンとパディング */
+  --margin-paragraph: 0.8rem 0;
+  --padding-paragraph: 0;
+
+  /* コードのマージンとパディング */
+  --margin-code: 0.5rem 0.2rem;
+  --padding-code: 0.3rem 0.4rem;
+
+  /* 引用ブロックのマージンとパディング */
+  --margin-blockquote: 1.2rem 0;
+  --padding-blockquote: 0.8rem 1rem;
+}
+
+/* ==========================================
+   4. 本文要素スタイル適用
    ========================================== */
 
+/* 見出しスタイル */
 h1 {
-  font-size: 12pt;
-  margin: 1.8rem 0 1rem 0;
-  padding: 0.3rem 0;
+  font-size: var(--font-size-h1);
+  margin: var(--margin-h1);
+  padding: var(--padding-h1);
   font-weight: 600;
   border-bottom: 1.5px solid #ddd;
 }
 
 h2 {
-  font-size: 11pt;
-  margin: 1.6rem 0 0.8rem 0;
-  padding: 0.25rem 0;
+  font-size: var(--font-size-h2);
+  margin: var(--margin-h2);
+  padding: var(--padding-h2);
   font-weight: 600;
   border-bottom: 1px solid #eee;
 }
 
 h3 {
-  font-size: 10pt;
-  margin: 1.3rem 0 0.7rem 0;
-  padding: 0.2rem 0;
+  font-size: var(--font-size-h3);
+  margin: var(--margin-h3);
+  padding: var(--padding-h3);
   font-weight: 500;
 }
 
 h4 {
-  font-size: 9pt;
-  margin: 1.1rem 0 0.6rem 0;
-  padding: 0.15rem 0;
+  font-size: var(--font-size-h4);
+  margin: var(--margin-h4);
+  padding: var(--padding-h4);
   font-weight: 500;
 }
 
 h5 {
-  font-size: 8pt;
-  margin: 0.9rem 0 0.5rem 0;
-  padding: 0.1rem 0;
+  font-size: var(--font-size-h5);
+  margin: var(--margin-h5);
+  padding: var(--padding-h5);
   font-weight: 500;
 }
 
 h6 {
-  font-size: 7pt;
-  margin: 0.8rem 0 0.4rem 0;
-  padding: 0.1rem 0;
+  font-size: var(--font-size-h6);
+  margin: var(--margin-h6);
+  padding: var(--padding-h6);
   font-weight: 500;
 }
 
-/* ==========================================
-   3. リストスタイル
-   ========================================== */
-
+/* リストスタイル */
 ul, ol {
-  margin: 0.6rem 0 1rem;
-  padding: 0 1.35rem;
+  margin: var(--margin-list);
+  padding: var(--padding-list);
 }
 
 ul {
@@ -162,116 +233,88 @@ ol > li > ul > li > ul {
 }
 
 ul li, ol li {
-  font-size: 8pt;
-  margin-bottom: 0.4em;
+  font-size: var(--font-size-list-item);
+  margin-bottom: 0.4em; /* リストアイテム間隔を広げる */
   padding-left: 0.3em;
-  line-height: 1.5;
+  line-height: 1.5; /* リストの行間を調整 */
 }
 
-/* ==========================================
-   4. テーブルスタイル
-   ========================================== */
-
+/* テーブルスタイル */
 table {
-  font-size: 8pt;
-  margin: 0.6rem auto 1rem;
+  font-size: var(--font-size-table);
+  margin: var(--margin-table);
   padding: 0;
   border-collapse: collapse;
   width: 100%;
 }
 
 th {
-  font-size: 8pt;
-  padding: 0.3rem 0.5rem;
+  font-size: var(--font-size-table-header);
+  padding: var(--padding-table);
   border: 1px solid #ddd;
   background-color: #f5f5f5;
 }
 
 td {
-  padding: 0.3rem 0.5rem;
+  padding: var(--padding-table);
   border: 1px solid #ddd;
 }
 
-/* ==========================================
-   5. 段落とテキストスタイル
-   ========================================== */
-
+/* 段落スタイル - 文頭から始まる */
 p {
-  font-size: 9pt;
-  margin: 0.8rem 0;
-  padding: 0;
+  font-size: var(--font-size-paragraph);
+  margin: var(--margin-paragraph);
+  padding: var(--padding-paragraph);
   text-indent: 0;
   line-height: 1.6;
 }
 
-small {
-  font-size: 8pt;
-}
-
-sup, sub {
-  font-size: 7pt;
-}
-
-cite {
-  font-size: 7pt;
-  margin: 0;
-  padding: 0;
-}
-
-strong {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 500;
-  color: #333;
-}
-
-/* ==========================================
-   6. コードスタイル
-   ========================================== */
-
+/* コードスタイル */
 code {
-  font-size: 7pt;
+  font-size: var(--font-size-code-inline);
   margin: 0;
-  padding: 0.3rem 0.4rem;
+  padding: var(--padding-code);
   background-color: #f6f8fa;
   border-radius: 4px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   color: #24292e;
-   line-height:1.4rem!important;
-
+  line-height: 1.5rem; /* コードの行間を広げる */
 }
 
 pre {
-  margin: 0.5rem 0;
+  margin: var(--margin-code);
   padding: 0;
   background-color: #f6f8fa;
   border-radius: 4px;
   border: 1px solid #eaecef;
-  max-height: none;
-   line-height: 1.85rem ;
+  line-height: 1.5rem; /* コードの行間を広げる */
+  max-height: none; /* 高さ制限なし */
+  overflow: visible; /* 内容が切れないように */
 }
 
 pre code {
-  font-size: 7pt;
+  font-size: var(--font-size-code-block);
   margin: 0;
-  padding: 0.8rem;
+  padding: 0.8rem; /* パディングを大きく */
   background-color: transparent;
   display: block;
   overflow-x: auto;
-  letter-spacing: 0.01em;
-  tab-size: 4;
-  white-space: pre;
+  letter-spacing: 0.01em; /* 文字間隔をわずかに広げる */
+  tab-size: 4; /* タブサイズを4に設定 */
+  line-height: 1.5rem; /* コードの行間を広げる */
+  white-space: pre; /* 改行と空白を保持 */
 }
 
 /* 言語固有のコードブロックスタイル */
 pre[data-language="javascript"] code,
 pre[data-language="js"] code {
-  line-height: 1.8 !important;
+  line-height: 1.8 !important; /* JavaScriptはさらに行間を広げる */
 }
 
 /* 特に長いコードブロック用のスタイル */
 pre.long-code {
-  font-size: 8pt;
-  background-color: #fcfcfc;
+  font-size: 8pt; /* 長いコードはフォントを小さく */
+  background-color: #fcfcfc; /* 背景色を少し変える */
 }
 
 pre.long-code code {
@@ -280,20 +323,17 @@ pre.long-code code {
   line-height: 1.6 !important;
 }
 
-/* ==========================================
-   7. 引用ブロックスタイル
-   ========================================== */
-
+/* 引用ブロックスタイル */
 blockquote {
-  font-size: 8pt;
-  margin: 1.2rem 0;
-  padding: 0.8rem 1rem;
+  font-size: var(--font-size-blockquote);
+  margin: var(--margin-blockquote);
+  padding: var(--padding-blockquote);
   background-color: #f9f9f9;
   border-left: 4px solid #ccc;
 }
 
 blockquote p {
-  font-size: 8pt;
+  font-size: var(--font-size-blockquote-paragraph);
   margin: 0;
   padding: 0;
 }
@@ -303,10 +343,29 @@ blockquote strong {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-/* ==========================================
-   8. リンクと画像
-   ========================================== */
+/* その他の要素スタイル */
+small {
+  font-size: var(--font-size-small);
+}
 
+sup, sub {
+  font-size: var(--font-size-supsub);
+}
+
+cite {
+  font-size: var(--font-size-supsub);
+  margin: 0;
+  padding: 0;
+}
+
+/* 強調テキスト */
+strong {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  color: #333;
+}
+
+/* リンク */
 a {
   color: #0366d6;
   text-decoration: none;
@@ -316,6 +375,7 @@ a:hover {
   text-decoration: underline;
 }
 
+/* 画像 */
 img {
   max-width: 100%;
   height: auto;
@@ -324,7 +384,7 @@ img {
 }
 
 /* ==========================================
-   9. シンタックスハイライト
+   5. シンタックスハイライト改善
    ========================================== */
 
 /* コードブロック内のコメント */
@@ -384,7 +444,7 @@ img {
 }
 
 /* ==========================================
-   10. ユーティリティクラス
+   6. ユーティリティクラス
    ========================================== */
 
 /* 文字揃え */
@@ -405,19 +465,6 @@ img {
   max-width: 100%;
   overflow-x: auto;
   margin: 1rem 0;
-}
-
-/* コードサイズ調整用 */
-.code-small {
-  font-size: 8pt !important;
-}
-
-.code-compact {
-  line-height: 1.4 !important;
-}
-
-.code-expanded {
-  line-height: 2 !important;
 }
 
 /* 余白調整 */
@@ -450,20 +497,21 @@ img {
 
 /* その他のユーティリティ */
 .small-text {
-  font-size: 8pt;
+  font-size: var(--font-size-small);
 }
 
 .no-border {
   border: none !important;
 }
 
-/* レイアウト */
+/* 2段組レイアウト */
 .two-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.2rem;
 }
 
+/* 3段組レイアウト */
 .three-columns {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
