@@ -246,7 +246,7 @@ pre {
   border: 1px solid #eaecef;
   max-height: none;
   overflow: visible;
-   line-height: 1.85 ;
+   line-height: 1.85rem ;
 }
 
 pre code {
