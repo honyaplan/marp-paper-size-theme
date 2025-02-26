@@ -105,12 +105,12 @@ section::after {
   --font-size-h6: 8pt;
   
   /* 要素別サイズ */
-  --font-size-list-item: 9pt;
+  --font-size-list-item: 8pt; /* リストフォントを小さく調整 */
   --font-size-table: 8pt;
   --font-size-table-header: 8pt;
   --font-size-paragraph: var(--font-size-base);
-  --font-size-code-inline: 9pt; /* インラインコードサイズ拡大 */
-  --font-size-code-block: 9pt; /* コードブロックサイズ拡大 */
+  --font-size-code-inline: 9pt;
+  --font-size-code-block: 9pt;
   --font-size-blockquote: var(--font-size-small);
   --font-size-blockquote-paragraph: var(--font-size-small);
 }
@@ -123,10 +123,10 @@ section::after {
   --margin-base: 0.8rem;
 
   /* 見出しのマージン */
-  --margin-h1: 1.8rem 0 1rem 0; /* 上部マージン拡大 */
-  --margin-h2: 1.6rem 0 0.8rem 0; /* 上部マージン拡大 */
-  --margin-h3: 1.3rem 0 0.7rem 0; /* 上部マージン拡大 */
-  --margin-h4: 1.1rem 0 0.6rem 0; /* 上部マージン拡大 */
+  --margin-h1: 1.8rem 0 1rem 0;
+  --margin-h2: 1.6rem 0 0.8rem 0;
+  --margin-h3: 1.3rem 0 0.7rem 0;
+  --margin-h4: 1.1rem 0 0.6rem 0;
   --margin-h5: 0.9rem 0 0.5rem 0;
   --margin-h6: 0.8rem 0 0.4rem 0;
 
@@ -139,24 +139,24 @@ section::after {
   --padding-h6: 0.1rem 0;
 
   /* リストアイテムのマージンとパディング */
-  --margin-list: 0.6rem 0 1rem; /* 余白調整 */
-  --padding-list: 0 1.5rem; /* 左余白拡大 */
+  --margin-list: 0.6rem 0 1rem;
+  --padding-list: 0 1.5rem;
 
   /* テーブルのマージンとパディング */
-  --margin-table: .6rem auto 1rem; /* 上下マージン拡大 */
-  --padding-table: .3rem 0.5rem; /* セル内パディング拡大 */
+  --margin-table: .6rem auto 1rem;
+  --padding-table: .3rem 0.5rem;
 
   /* 段落のマージンとパディング */
-  --margin-paragraph: 0.8rem 0; /* 段落間隔拡大 */
+  --margin-paragraph: 0.8rem 0;
   --padding-paragraph: 0;
 
   /* コードのマージンとパディング */
   --margin-code: 0.5rem 0;
-  --padding-code: 0.3rem 0.4rem; /* パディング拡大 */
+  --padding-code: 0.3rem 0.4rem;
 
   /* 引用ブロックのマージンとパディング */
   --margin-blockquote: 1.2rem 0;
-  --padding-blockquote: 0.8rem 1rem; /* 余白拡大 */
+  --padding-blockquote: 0.8rem 1rem;
 }
 
 /* ==========================================
@@ -169,7 +169,7 @@ h1 {
   margin: var(--margin-h1);
   padding: var(--padding-h1);
   font-weight: 600;
-  border-bottom: 1.5px solid #ddd; /* 線を少し太く */
+  border-bottom: 1.5px solid #ddd;
 }
 
 h2 {
@@ -215,11 +215,11 @@ ul, ol {
 }
 
 ul {
-  list-style-type: disc; /* ディスクタイプに変更 */
+  list-style-type: disc;
 }
 
 ul > li::before {
-  content: none; /* カスタムマーカーを削除 */
+  content: none;
 }
 
 ul > li > ul, 
@@ -234,8 +234,9 @@ ol > li > ul > li > ul {
 
 ul li, ol li {
   font-size: var(--font-size-list-item);
-  margin-bottom: 0.3em; /* リストアイテム間隔拡大 */
-  padding-left: 0.3em; /* リストアイテムの左パディング */
+  margin-bottom: 0.4em; /* リストアイテム間隔を広げる */
+  padding-left: 0.3em;
+  line-height: 1.5; /* リストの行間を調整 */
 }
 
 /* テーブルスタイル */
@@ -264,8 +265,8 @@ p {
   font-size: var(--font-size-paragraph);
   margin: var(--margin-paragraph);
   padding: var(--padding-paragraph);
-  text-indent: 0; /* 段落の最初の行のインデントなし */
-  line-height: 1.6; /* 行間を少し広げる */
+  text-indent: 0;
+  line-height: 1.6;
 }
 
 /* コードスタイル */
@@ -276,7 +277,7 @@ code {
   background-color: #f6f8fa;
   border-radius: 4px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  color: #24292e; /* コードテキストの色を濃く */
+  color: #24292e;
 }
 
 pre {
@@ -284,17 +285,40 @@ pre {
   padding: 0;
   background-color: #f6f8fa;
   border-radius: 4px;
-  border: 1px solid #eaecef; /* 境界線を追加 */
+  border: 1px solid #eaecef;
+  max-height: none; /* 高さ制限なし */
+  overflow: visible; /* 内容が切れないように */
 }
 
 pre code {
   font-size: var(--font-size-code-block);
   margin: 0;
-  padding: 0.7rem; /* コードブロックのパディングを大きく */
-  background-color: transparent; /* 背景を透明に */
+  padding: 0.8rem; /* パディングを大きく */
+  background-color: transparent;
   display: block;
   overflow-x: auto;
-  line-height: 1.5; /* コードの行間 */
+  line-height: 1.8 !important; /* コードの行間を広げる */
+  letter-spacing: 0.01em; /* 文字間隔をわずかに広げる */
+  tab-size: 4; /* タブサイズを4に設定 */
+  white-space: pre; /* 改行と空白を保持 */
+}
+
+/* 言語固有のコードブロックスタイル */
+pre[data-language="javascript"] code,
+pre[data-language="js"] code {
+  line-height: 1.8 !important; /* JavaScriptはさらに行間を広げる */
+}
+
+/* 特に長いコードブロック用のスタイル */
+pre.long-code {
+  font-size: 8pt; /* 長いコードはフォントを小さく */
+  background-color: #fcfcfc; /* 背景色を少し変える */
+}
+
+pre.long-code code {
+  font-size: 8pt;
+  padding: 1rem;
+  line-height: 1.6 !important;
 }
 
 /* 引用ブロックスタイル */
@@ -336,7 +360,7 @@ cite {
 strong {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 500;
-  color: #333; /* 強調テキストを少し濃く */
+  color: #333;
 }
 
 /* リンク */
@@ -354,11 +378,71 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 0.8rem auto; /* 上下マージン拡大 */
+  margin: 0.8rem auto;
 }
 
 /* ==========================================
-   5. ユーティリティクラス
+   5. シンタックスハイライト改善
+   ========================================== */
+
+/* コードブロック内のコメント */
+.hljs-comment,
+.hljs-quote {
+  color: #6a737d;
+  font-style: italic;
+}
+
+/* キーワード */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #d73a49;
+  font-weight: normal;
+}
+
+/* 文字列 */
+.hljs-string,
+.hljs-doctag,
+.hljs-regexp {
+  color: #032f62;
+}
+
+/* 変数名など */
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #6f42c1;
+  font-weight: normal;
+}
+
+/* 関数名 */
+.hljs-title.function_ {
+  color: #6f42c1;
+}
+
+/* 数値 */
+.hljs-number,
+.hljs-literal {
+  color: #005cc5;
+}
+
+/* 演算子 */
+.hljs-operator {
+  color: #d73a49;
+}
+
+/* 属性 */
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr {
+  color: #005cc5;
+}
+
+/* ==========================================
+   6. ユーティリティクラス
    ========================================== */
 
 /* 文字揃え */
@@ -372,6 +456,26 @@ img {
 
 .text-left {
   text-align: left;
+}
+
+/* コード表示調整用 */
+.code-block-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+/* コードサイズ調整用 */
+.code-small {
+  font-size: 8pt !important;
+}
+
+.code-compact {
+  line-height: 1.4 !important;
+}
+
+.code-expanded {
+  line-height: 2 !important;
 }
 
 /* 余白調整 */
@@ -415,7 +519,7 @@ img {
 .two-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.2rem; /* 列間のギャップを広げる */
+  gap: 1.2rem;
 }
 
 /* 3段組レイアウト */
