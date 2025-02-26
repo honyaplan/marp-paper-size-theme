@@ -20,7 +20,6 @@ section {
   font-size: 9pt;
   padding: 40px;
   display: flex;
-  /* 本文用デフォルトスタイル：左揃え */
   text-align: left;
   justify-content: flex-start;
   align-items: flex-start;
