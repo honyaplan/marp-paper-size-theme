@@ -236,6 +236,8 @@ code {
   border-radius: 4px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   color: #24292e;
+   line-height:1.4rem!important;
+
 }
 
 pre {
