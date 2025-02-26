@@ -1,11 +1,21 @@
-/* @theme A4-Portrait */
-
+/* @theme A4-Document */
 @import 'default';
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=Noto+Sans+JP:wght@500&display=swap');
 
+/* ベースのフォントサイズ設定 */
+:root {
+  font-size: 16px; /* remの基準値 */
+}
+
+/* 基本設定 - すべてのセクション共通 */
 section {
-  /* A4縦向き (デフォルト) */
+  /* A4縦向き */
   width: 210mm;
   height: 297mm;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans JP', sans-serif;
+  color: #24292e;
+  background-color: #ffffff;
 }
 
 section.landscape {
@@ -14,18 +24,234 @@ section.landscape {
   height: 210mm;
 }
 
-h2 {
-  font-size: 30px;
+/* 表紙用スタイル */
+section.cover {
+  padding: 40mm 20mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-h3 {
-  font-size: 25px;
+section.cover h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
-p {
-  font-size: 20px;
+section.cover h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-bottom: none;
 }
 
-li {
-  font-size: 20px;
+section.cover p {
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+section.cover .author {
+  margin-top: 4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+section.cover .date {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* 本文用スタイル */
+section.content {
+  padding: 25mm 20mm;
+  text-align: left;
+}
+
+/* 見出し - 本文用 */
+section.content h1 {
+  font-size: 0.875rem; /* 14pt */
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eaecef;
+}
+
+section.content h2 {
+  font-size: 0.75rem; /* 12pt */
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eaecef;
+}
+
+section.content h3 {
+  font-size: 0.6875rem; /* 11pt */
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+section.content h4, section.content h5, section.content h6 {
+  font-size: 0.625rem; /* 10pt */
+  font-weight: 600;
+  margin-top: 0.75rem;
+  margin-bottom: 0.375rem;
+}
+
+/* 本文 */
+section.content p {
+  font-size: 0.625rem; /* 10pt */
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 0.625rem;
+  text-indent: 1em; /* 段落の最初の行をインデント */
+}
+
+/* 最初の段落はインデントしない */
+section.content h1 + p,
+section.content h2 + p,
+section.content h3 + p,
+section.content h4 + p,
+section.content h5 + p,
+section.content h6 + p {
+  text-indent: 0;
+}
+
+/* リスト */
+section.content ul, section.content ol {
+  padding-left: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+section.content li {
+  font-size: 0.625rem; /* 10pt */
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+section.content li > ul, section.content li > ol {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+/* コードブロック */
+section.content pre {
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  padding: 1rem;
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+
+section.content code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.5625rem; /* 9pt */
+  background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+section.content pre > code {
+  padding: 0;
+  background-color: transparent;
+  white-space: pre;
+}
+
+/* 表 */
+section.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  font-size: 0.5625rem; /* 9pt */
+}
+
+section.content table th, section.content table td {
+  padding: 0.375rem 0.8125rem;
+  border: 1px solid #dfe2e5;
+}
+
+section.content table th {
+  font-weight: 600;
+  background-color: #f6f8fa;
+}
+
+section.content table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* 引用 */
+section.content blockquote {
+  margin: 0 0 1rem 0;
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+  font-size: 0.625rem; /* 10pt */
+}
+
+section.content blockquote > :first-child {
+  margin-top: 0;
+}
+
+section.content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* 強調テキスト */
+strong {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+}
+
+/* 水平線 */
+hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 1.5rem 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+
+/* リンク */
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 画像 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.625rem auto;
+}
+
+/* チェックボックス */
+input[type="checkbox"] {
+  margin-right: 0.3125rem;
+}
+
+/* ページ番号 - 表紙には表示しない */
+section.content::after {
+  content: attr(data-marpit-pagination);
+  font-size: 0.5rem;
+  text-align: center;
+  position: absolute;
+  bottom: 10mm;
+  width: calc(100% - 40mm);
+}
+
+section.cover::after {
+  content: none;
 }
