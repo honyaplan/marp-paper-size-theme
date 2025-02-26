@@ -19,7 +19,7 @@ section {
   font-family: "IBM Plex Sans JP";
   font-size: 9pt;
   padding: 40px;
-　display: flex;
+  display: flex;
   /* 本文用デフォルトスタイル：左揃え */
   text-align: left;
   justify-content: flex-start;
