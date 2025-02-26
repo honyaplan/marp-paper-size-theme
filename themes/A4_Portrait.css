@@ -1,4 +1,12 @@
-/* @theme A4-Document */
+/* @theme A4-Portrait */
+
+/**
+ * MARPのA4サイズ縦向きテーマ
+ * 基本設定、フォントサイズ、マージン・パディングを整理
+ */
+
+/* ベーステーマのインポート */
+
 @import 'default';
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=Noto+Sans+JP:wght@500&display=swap');
 
