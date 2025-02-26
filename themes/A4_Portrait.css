@@ -1,38 +1,43 @@
 /* @theme A4-Portrait */
 
 /**
- * MARPのA4サイズ縦向きテーマ
- * 基本設定、フォントサイズ、マージン・パディングを整理
+ * MARP用のA4縦向きテーマ
+ * すべてpx/remを排してptベースにしています
+ * 標準の文字サイズは 9pt
  */
 
 /* ベーステーマのインポート */
-
 @import 'default';
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=Noto+Sans+JP:wght@500&display=swap');
 
-/* ベースのフォントサイズ設定 */
+/* --- 基本設定 ----------------------------------------------------- */
+
+/* 本文標準フォントサイズを 9pt に設定 */
 :root {
-  font-size: 12px; /* remの基準値 */
+  font-size: 9pt; /* グローバルな基準として設定（ただし以下では直接 pt で指定） */
 }
 
-/* 基本設定 - すべてのセクション共通 */
+/* セクション共通 */
 section {
-  /* A4縦向き */
+  /* A4 縦向き */
   width: 210mm;
   height: 297mm;
   box-sizing: border-box;
   font-family: 'IBM Plex Sans JP', sans-serif;
   color: #24292e;
   background-color: #ffffff;
+  position: relative; /* ページ番号などを absolute で配置するため */
 }
 
 section.landscape {
-  /* 横向き */
+  /* A4 横向き */
   width: 297mm;
   height: 210mm;
 }
 
-/* 表紙用スタイル */
+/* --- 表紙用スタイル ------------------------------------------------ */
+
+/* 表紙セクション */
 section.cover {
   padding: 40mm 20mm;
   display: flex;
@@ -42,87 +47,104 @@ section.cover {
   text-align: center;
 }
 
+/* 表紙タイトル */
 section.cover h1 {
-  font-size: 1.5rem;
+  font-size: 14pt;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 28pt; /* ~2rem(18pt) から調整 */
   border-bottom: none;
   padding-bottom: 0;
 }
 
+/* 表紙サブタイトル */
 section.cover h2 {
-  font-size: 1rem;
+  font-size: 12pt;
   font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-bottom: 21pt; /* ~1.5rem(13.5pt) から調整 */
   border-bottom: none;
 }
 
+/* 表紙テキスト */
 section.cover p {
-  font-size: 0.75rem;
-  margin-bottom: 1rem;
+  font-size: 9pt;
+  margin-bottom: 9pt;
 }
 
+/* 著者名 */
 section.cover .author {
-  margin-top: 4rem;
-  font-size: 0.875rem;
+  margin-top: 36pt; /* ~4rem(36pt) から調整 */
+  font-size: 9pt;
   font-weight: 500;
 }
 
+/* 日付 */
 section.cover .date {
-  margin-top: 1rem;
-  font-size: 0.75rem;
+  margin-top: 9pt; /* ~1rem(9pt) から調整 */
+  font-size: 8pt;
   color: #666;
 }
 
-/* 本文用スタイル */
+/* 表紙にはページ番号を表示しない */
+section.cover::after {
+  content: none;
+}
+
+/* --- 本文用スタイル ------------------------------------------------ */
+
+/* 本文セクション */
 section.content {
   padding: 25mm 20mm;
   text-align: left;
 }
 
-/* 見出し - 本文用 */
+/* 見出し（h1） */
 section.content h1 {
-  font-size: 0.875rem; /* 14pt */
+  font-size: 14pt;
   font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid #eaecef;
+  margin-top: 13.5pt; /* ~1.5rem(13.5pt) */
+  margin-bottom: 9pt;
+  padding-bottom: 2pt;
+  border-bottom: 1pt solid #eaecef;
 }
 
+/* 見出し（h2） */
 section.content h2 {
-  font-size: 0.75rem; /* 12pt */
+  font-size: 12pt;
   font-weight: 600;
-  margin-top: 1.25rem;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid #eaecef;
+  margin-top: 12pt;
+  margin-bottom: 9pt;
+  padding-bottom: 2pt;
+  border-bottom: 1pt solid #eaecef;
 }
 
+/* 見出し（h3） */
 section.content h3 {
-  font-size: 0.6875rem; /* 11pt */
+  font-size: 11pt;
   font-weight: 600;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  margin-top: 9pt;
+  margin-bottom: 6pt;
 }
 
-section.content h4, section.content h5, section.content h6 {
-  font-size: 0.625rem; /* 10pt */
+/* 見出し（h4,h5,h6） */
+section.content h4,
+section.content h5,
+section.content h6 {
+  font-size: 10pt;
   font-weight: 600;
-  margin-top: 0.75rem;
-  margin-bottom: 0.375rem;
+  margin-top: 7pt;
+  margin-bottom: 4pt;
 }
 
-/* 本文 */
+/* 本文（段落） */
 section.content p {
-  font-size: 0.625rem; /* 10pt */
+  font-size: 9pt; /* 標準本文 9pt */
   line-height: 1.5;
   margin-top: 0;
-  margin-bottom: 0.625rem;
-  text-indent: 1em; /* 段落の最初の行をインデント */
+  margin-bottom: 9pt;
+  text-indent: 9pt; /* 段落冒頭を1文字分くらいインデント */
 }
 
-/* 最初の段落はインデントしない */
+/* 見出し直後の段落はインデントしない */
 section.content h1 + p,
 section.content h2 + p,
 section.content h3 + p,
@@ -133,38 +155,40 @@ section.content h6 + p {
 }
 
 /* リスト */
-section.content ul, section.content ol {
-  padding-left: 1.25rem;
+section.content ul,
+section.content ol {
+  padding-left: 18pt; /* ~1.25rem(11.25pt) 調整 */
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 9pt;
 }
 
 section.content li {
-  font-size: 0.625rem; /* 10pt */
+  font-size: 9pt;
   line-height: 1.5;
-  margin-bottom: 0.25rem;
+  margin-bottom: 3pt;
 }
 
-section.content li > ul, section.content li > ol {
-  margin-top: 0.25rem;
+section.content li > ul,
+section.content li > ol {
+  margin-top: 3pt;
   margin-bottom: 0;
 }
 
 /* コードブロック */
 section.content pre {
   background-color: #f6f8fa;
-  border-radius: 3px;
-  padding: 1rem;
+  border-radius: 2pt; /* ~3pxをpt変換 */
+  padding: 9pt;       /* ~1rem(9pt) */
   overflow: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 9pt;
 }
 
 section.content code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 0.5625rem; /* 9pt */
+  font-size: 8pt; /* コードはやや小さめ */
   background-color: #f6f8fa;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
+  padding: 2pt 4pt; /* ~0.2em & 0.4em(1.8pt/3.6pt) を目安に */
+  border-radius: 2pt;
 }
 
 section.content pre > code {
@@ -177,13 +201,14 @@ section.content pre > code {
 section.content table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1rem;
-  font-size: 0.5625rem; /* 9pt */
+  margin-bottom: 9pt;
+  font-size: 9pt; /* 表も本文サイズ */
 }
 
-section.content table th, section.content table td {
-  padding: 0.375rem 0.8125rem;
-  border: 1px solid #dfe2e5;
+section.content table th,
+section.content table td {
+  padding: 3pt 7pt; /* ~0.375rem & 0.8125rem の換算 */
+  border: 1pt solid #dfe2e5; /* ~1px -> 0.75pt だが見栄え上 1pt に */
 }
 
 section.content table th {
@@ -197,17 +222,16 @@ section.content table tr:nth-child(2n) {
 
 /* 引用 */
 section.content blockquote {
-  margin: 0 0 1rem 0;
-  padding: 0 1em;
+  margin: 0 0 9pt 0;
+  padding: 0 9pt; /* 左右に少し余白 */
   color: #6a737d;
-  border-left: 0.25em solid #dfe2e5;
-  font-size: 0.625rem; /* 10pt */
+  border-left: 2pt solid #dfe2e5; /* ~0.25em(2.25pt) */
+  font-size: 9pt;
 }
 
 section.content blockquote > :first-child {
   margin-top: 0;
 }
-
 section.content blockquote > :last-child {
   margin-bottom: 0;
 }
@@ -220,9 +244,9 @@ strong {
 
 /* 水平線 */
 hr {
-  height: 0.25em;
+  height: 2pt; /* ~0.25em(2pt) */
   padding: 0;
-  margin: 1.5rem 0;
+  margin: 14pt 0; /* ~1.5rem(13.5pt) */
   background-color: #e1e4e8;
   border: 0;
 }
@@ -232,7 +256,6 @@ a {
   color: #0366d6;
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
@@ -242,24 +265,21 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 0.625rem auto;
+  margin: 6pt auto; /* ~0.625rem(5.625pt) */
 }
 
 /* チェックボックス */
 input[type="checkbox"] {
-  margin-right: 0.3125rem;
+  margin-right: 3pt; /* ~0.3125rem(2.8pt) */
 }
 
-/* ページ番号 - 表紙には表示しない */
+/* ページ番号（本文にのみ表示） */
 section.content::after {
   content: attr(data-marpit-pagination);
-  font-size: 0.5rem;
+  font-size: 5pt; /* ~0.5rem(4.5pt) */
   text-align: center;
   position: absolute;
   bottom: 10mm;
   width: calc(100% - 40mm);
-}
-
-section.cover::after {
-  content: none;
+  left: 20mm;
 }
